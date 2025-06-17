@@ -37,7 +37,7 @@ public class User {
     private String updateby;
 
     @TableField("user_update_time")
-    private String updateTime;
+    private Date updateTime;
 
 
 }
