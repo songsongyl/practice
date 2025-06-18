@@ -1,5 +1,6 @@
 package org.example.practice.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.example.practice.entity.Music;
 import org.example.practice.mapper.IMusicMapper;
 import org.example.practice.service.MusicService;
@@ -33,6 +34,14 @@ public class IMusicServiceImpl implements MusicService {
         music.forEach(m->{
             stringRedisTemplate.opsForValue().set(m.getPosterSign(),m.getPoster());
         });
+    }
+
+    @Override
+    public List<Music> findByKeyword(String keyword) {
+        LambdaQueryWrapper<Music> musicL = new LambdaQueryWrapper<>();
+        musicL.like(Music::getTitle, keyword).or().like(Music::getLyrics, keyword);
+        List<Music> list = musicMapper.selectList(musicL);
+        return list;
     }
 
 

@@ -14,6 +14,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Tag(name = "音乐上传")
 @RestController
 @RequestMapping("/api/music")
@@ -66,5 +68,12 @@ public class MusicController {
         stringRedisTemplate.opsForValue().set(ncode,encode);
 
         return HttpResult.success(ncode);
+    }
+
+    @GetMapping("/findMusic")
+    @Operation(summary = "使用关键字查询")
+    public HttpResult findMusic(String keyword){
+        List<Music>  list = musicService.findByKeyword(keyword);
+        return HttpResult.success(list);
     }
 }
