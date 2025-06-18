@@ -1,5 +1,10 @@
 package org.example.practice.mapper;
 
-public interface IMusicMapper {
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+import org.example.practice.entity.Music;
+
+@Mapper
+public interface IMusicMapper extends BaseMapper<Music> {
 
 }
