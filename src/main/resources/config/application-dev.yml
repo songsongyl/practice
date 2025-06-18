@@ -17,6 +17,11 @@ spring:
     multipart:
       max-file-size: 200MB
       max-request-size: 250MB
+  data:
+    redis:
+      database: 0
+      host: 127.0.0.1
+      port: 6379
 
 logging:
   file:
@@ -33,6 +38,7 @@ knife4j:
     language: zh_cn
 server:
   port: 8080
+
 
 
 mypath: D:/data/
