@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
         @TableField("music_lyrics")
         private String lyrics;
 
-        @TableField("music_poser")
+        @TableField("music_poster")
         private String poster;
 
         @TableField("music_poster_sign")

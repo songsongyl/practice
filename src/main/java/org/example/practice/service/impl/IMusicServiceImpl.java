@@ -31,7 +31,7 @@ public class IMusicServiceImpl implements MusicService {
     public void loadImageInfo() {
         List<Music> music = musicMapper.selectList(null);
         music.forEach(m->{
-            stringRedisTemplate.opsForValue().set(m.getPosterSign(),m.getTitle());
+            stringRedisTemplate.opsForValue().set(m.getPosterSign(),m.getPoster());
         });
     }
 

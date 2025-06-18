@@ -11,10 +11,7 @@ import org.example.practice.result.HttpResult;
 import org.example.practice.service.MusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @Tag(name = "音乐上传")
@@ -26,6 +23,16 @@ public class MusicController {
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
     private MusicService musicService;
+
+
+    @Operation(summary = "添加歌曲")
+    @PostMapping("/addMusic")
+    public HttpResult<String> addMusic(@RequestBody Music music) {
+        String s = stringRedisTemplate.opsForValue().get(music.getPosterSign());
+        music.setPosterSign(s);
+        musicService.add(music);
+        return HttpResult.success("文件添加成功");
+    }
 
     @Operation(summary = "歌曲封面上传")
     @PostMapping("/imgUpload")
@@ -46,16 +53,18 @@ public class MusicController {
         if(hasKey) {
             throw new TestException("图片已经存在，上传失败");
         }
-        Music music = new Music();
-        music.setTitle("2");
-        music.setAuthor("2");
-        music.setDuration(1);
-        music.setPoster(encode);
-        music.setPosterSign(ncode);
-        musicService.add(music);
-        stringRedisTemplate.opsForValue().set(ncode, music.getTitle());
+//        Music music = new Music();
+//        music.setTitle("光年之外");
+//        music.setDuration(3);
+//        music.setAuthor("邓紫棋");
+//        music.setDescription("科幻电影主题曲");
+//        music.setLyrics("也许未来遥远在光年之外");
+//        music.setPoster(encode);
+//        music.setPosterSign(ncode);
         //3.2. 存储到数据库
-        //4. 图片存在
-        return HttpResult.success("图片上传成功");
+
+        stringRedisTemplate.opsForValue().set(ncode,encode);
+
+        return HttpResult.success(ncode);
     }
 }

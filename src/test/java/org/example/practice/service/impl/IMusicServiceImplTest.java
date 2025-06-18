@@ -1,5 +1,6 @@
 package org.example.practice.service.impl;
 
+import org.example.practice.entity.Music;
 import org.example.practice.service.MusicService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +20,7 @@ class IMusicServiceImplTest {
     @Test
     void add() {
 
+//        musicService.add(music);
     }
 
     @Test
