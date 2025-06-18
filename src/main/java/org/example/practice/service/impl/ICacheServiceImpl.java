@@ -10,9 +10,12 @@ public class ICacheServiceImpl implements ICacheService {
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
     @Override
-    public void add(String key, String value) {
-        stringRedisTemplate.opsForValue().set(key, value);
+    public void add(String key, String value,double right) {
+//        stringRedisTemplate.opsForValue().set(key, value);
+//        stringRedisTemplate.opsForList().leftPush(key, value);
+        stringRedisTemplate.opsForZSet().add(key,value,right);
     }
 
     @Override

@@ -17,7 +17,12 @@ class ICacheServiceImplTest {
     private ICacheService cacheService;
     @Test
     void add() {
-        cacheService.add("fruit", "apple");
+//        cacheService.add("sports", "足球");
+//        cacheService.add("sports","篮球");
+//        cacheService.add("sp","sp");
+            cacheService.add("foot","jiaozi",2);
+            cacheService.add("foot","红肠",9);
+            cacheService.add("foot","杀猪菜",5);
     }
 
     @Test
