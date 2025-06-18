@@ -9,4 +9,5 @@ public interface MusicService {
     void remove(Music music);
     void loadImageInfo();
     List<Music> findByKeyword(String keyword);
+    List<Music> findAll();
 }

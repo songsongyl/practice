@@ -72,8 +72,9 @@ public class MusicController {
 
     @GetMapping("/findMusic")
     @Operation(summary = "使用关键字查询")
-    public HttpResult findMusic(String keyword){
+    public HttpResult<List<Music>> findMusic(String keyword){
         List<Music>  list = musicService.findByKeyword(keyword);
         return HttpResult.success(list);
     }
+
 }
